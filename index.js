@@ -1,5 +1,54 @@
 // Task "Arrow to Functions"
 
+// 1 //task "Temperature"
+function fromCelsiusToFahrenheit(celsius) {
+  return celsius * 9/5 + 32;
+} 
+console.log("from Celsius To Fahrenheit>>>", fromCelsiusToFahrenheit(20));
+
+// 2 //Task "RGB"
+function rgb(r, g, b)  {
+  const red = r < 16 ? '0' + r.toString(16) : r.toString(16);
+  const green = g < 16 ? '0' + g.toString(16) : g.toString(16);
+  const blue = b < 16 ? '0' + b.toString(16) : b.toString(16);
+  return '#' + red + green + blue;
+}
+console.log("RGB color>>>", rgb(15, 5, 10));
+
+// 3 //Task "Flats"
+function flats(floors, flatsPerFloor, flatNumber) {
+  const entrance = Math.ceil(flatNumber / (floors * flatsPerFloor));
+  const floor = Math.ceil((flatNumber % (floors * flatsPerFloor)) / flatsPerFloor);
+  return {entrance, floor};
+}
+console.log("flats result>>>", flats(80, 4, 48));
+
+// 4 //Task "Credentials"
+const capitalize = (text) => text[0].toUpperCase() + text.slice(1).toLowerCase();
+
+function credentials () {
+  // const name = prompt("What is your name?");
+  // const surname = prompt("What is your surname?");
+  // const fatherName = prompt("What is your fatherName?");
+  const fullName = `${capitalize(name).trim()} ${capitalize(surname).trim()} ${capitalize(fatherName).trim()}`;
+  const result = {
+    name: capitalize(name), 
+    surname: capitalize(surname), 
+    fatherName: capitalize(fatherName), 
+    fullName: fullName
+  };
+  return result;
+}
+console.log("credentials>>>", credentials());
+
+// 5 //Task "New line"
+function newLine(userText) {
+  const splitString = userText.split("\\n");
+  const outputString = splitString.join("\n");
+  return outputString;
+}
+console.log("new line>>>", newLine("Hello \n World"));
+
 
 
 // Task "createPerson"
@@ -193,46 +242,46 @@ personForm("personForm", personObj);
 
 //Task "getSetForm"
 
-// function getSetForm(parent, person) {
-//   const domElement = document.getElementById(parent);
-//   const reestr = {};
+function getSetForm(parent, person) {
+  const domElement = document.getElementById(parent);
+  const reestr = {};
   
 
-//   for (const key in person) {
-//     const name = key.substring(3);
+  for (const key in person) {
+    const name = key.substring(3);
     
-//     if (key.slice(0, 3) === "get" && !reestr.key) {
-//       const input = document.createElement("input");
-//       input.type = typeof person[key]() === "string" ? "text" : "number";
-//       input.placeholder = name;
-//       input.value = person[key]();
-//       reestr[name] = input;
+    if (key.slice(0, 3) === "get" && !reestr.key) {
+      const input = document.createElement("input");
+      input.type = typeof person[key]() === "string" ? "text" : "number";
+      input.placeholder = name;
+      input.value = person[key]();
+      reestr[name] = input;
 
-//       if (person.hasOwnProperty(`set${name}`)) {
-//         input.oninput = (event) => {
-//         person[`set${name}`](event.target.value);
+      if (person.hasOwnProperty(`set${name}`)) {
+        input.oninput = (event) => {
+        person[`set${name}`](event.target.value);
     
-//         };
-//       } else {
-//         input.disabled = true;
-//       }
-//       if (name === "Name" || name === "Surname" || name === "FatherName") {
-//         if (person.hasOwnProperty(`set${name}`)) {
-//           reestr[name].oninput = () => {
-//             const fullName = `${reestr.Name.value} ${reestr.Surname.value} ${reestr.FatherName.value}`;
-//             console.log(fullName)
-//             person[`setFullName`](fullName);
-//           };
-//         }
-//       }
+        };
+      } else {
+        input.disabled = true;
+      }
+      if (name === "Name" || name === "Surname" || name === "FatherName") {
+        if (person.hasOwnProperty(`set${name}`)) {
+          reestr[name].oninput = () => {
+            const fullName = `${reestr.Name.value} ${reestr.Surname.value} ${reestr.FatherName.value}`;
+            console.log(fullName)
+            person[`setFullName`](fullName);
+          };
+        }
+      }
       
-//       domElement.appendChild(input);
-//     }
-//   }
-//   console.log(reestr);
-//   return reestr;
-// }
-// getSetForm("personForm", personObj);
+      domElement.appendChild(input);
+    }
+  }
+  console.log(reestr);
+  return reestr;
+}
+getSetForm("personForm", personObj);
 
 
 
