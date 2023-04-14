@@ -159,29 +159,32 @@ function personForm(parent, person){
   domElement.appendChild(ageInput);
   domElement.appendChild(fullNameInput);
 
-  nameInput.oninput = (event) => {
-    person.setName(event.target.value);
+  nameInput.oninput = () => {
+    person.setName(nameInput.value);
     nameInput.value = person.getName();
   };
 
-  surnameInput.oninput = (event) => {
-    person.setSurname(event.target.value);
+  surnameInput.oninput = () => {
+    person.setSurname(surnameInput.value);
     surnameInput.value = person.getSurname();
   }
 
-  fatherNameInput.oninput = (event) => {
-    person.setFatherName(event.target.value);
+  fatherNameInput.oninput = () => {
+    person.setFatherName(fatherNameInput.value);
     fatherNameInput.value = person.getFatherName();
   }
   
-  ageInput.oninput = (event) => {
-    person.setAge(event.target.value);
+  ageInput.oninput = () => {
+    person.setAge(ageInput.value);
     ageInput.value = person.getAge();
   }
   
-  fullNameInput.oninput = (event) => {
-    person.setFullName(event.target.value);
+  fullNameInput.oninput = () => {
+    person.setFullName(fullNameInput.value);
     fullNameInput.value = person.getFullName();
+    nameInput.value = person.getName();
+    surnameInput.value = person.getSurname();
+    fatherNameInput.value = person.getFatherName();
   }
 }
 personForm("personForm", personObj);
@@ -190,45 +193,46 @@ personForm("personForm", personObj);
 
 //Task "getSetForm"
 
-function getSetForm(parent, person) {
-  const domElement = document.getElementById(parent);
-  const reestr = {};
+// function getSetForm(parent, person) {
+//   const domElement = document.getElementById(parent);
+//   const reestr = {};
   
 
-  for (const key in person) {
-    const name = key.substring(3);
+//   for (const key in person) {
+//     const name = key.substring(3);
     
-    if (key.slice(0, 3) === "get" && !reestr.key) {
-      const input = document.createElement("input");
-      input.type = typeof person[key]() === "string" ? "text" : "number";
-      input.placeholder = name;
-      input.value = person[key]();
-      reestr[name] = input;
+//     if (key.slice(0, 3) === "get" && !reestr.key) {
+//       const input = document.createElement("input");
+//       input.type = typeof person[key]() === "string" ? "text" : "number";
+//       input.placeholder = name;
+//       input.value = person[key]();
+//       reestr[name] = input;
 
-      if (person.hasOwnProperty(`set${name}`)) {
-        input.oninput = (event) => {
-        person[`set${name}`](event.target.value);
-        };
-      } else {
-        input.disabled = true;
-      }
-      if (name === "Name" || name === "Surname" || name === "FatherName") {
-        if (person.hasOwnProperty(`set${name}`)) {
-          reestr[name].oninput = () => {
-            const fullName = `${reestr.Name.value} ${reestr.Surname.value} ${reestr.FatherName.value}`;
-            console.log(fullName)
-            person[`setFullName`](fullName);
-          };
-        }
-      }
+//       if (person.hasOwnProperty(`set${name}`)) {
+//         input.oninput = (event) => {
+//         person[`set${name}`](event.target.value);
+    
+//         };
+//       } else {
+//         input.disabled = true;
+//       }
+//       if (name === "Name" || name === "Surname" || name === "FatherName") {
+//         if (person.hasOwnProperty(`set${name}`)) {
+//           reestr[name].oninput = () => {
+//             const fullName = `${reestr.Name.value} ${reestr.Surname.value} ${reestr.FatherName.value}`;
+//             console.log(fullName)
+//             person[`setFullName`](fullName);
+//           };
+//         }
+//       }
       
-      domElement.appendChild(input);
-    }
-  }
-  console.log(reestr);
-  return reestr;
-}
-getSetForm("personForm", personObj);
+//       domElement.appendChild(input);
+//     }
+//   }
+//   console.log(reestr);
+//   return reestr;
+// }
+// getSetForm("personForm", personObj);
 
 
 
